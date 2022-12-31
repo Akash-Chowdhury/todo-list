@@ -41,15 +41,24 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos])
-  return (
+ return (
     <>
       <Router>
         <Header title={name} />
+        <Switch>
+          <Route  path="/" render={() => {
+            return (
+              <>
                 <AddTodo addTodo={addTodo} />
                 <Todos todos={todos} title={name} onDelete={onDelete} />
+              </>
+            )
+          }}>
+          </Route>
           <Route exact path="/about">
             <About />
           </Route>
+        </Switch>
         <Footer />
       </Router>
     </>
